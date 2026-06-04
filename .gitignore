@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Homebrew audit artifacts
+*.bottle.tar.gz
