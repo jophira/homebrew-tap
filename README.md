@@ -18,7 +18,7 @@ brew install jophira/tap/<formula>
 
 | Name | Type | Description |
 |------|------|-------------|
-| `weft` | Formula | Composable AI rules manager — manage, layer, and sync AI rule sources across teams and tools |
+| `weft` | Cask | Composable AI rules manager for coding agents and harnesses |
 
 ---
 
@@ -66,3 +66,9 @@ java/project-rules/instrument-service/instrument-service.md
 Weft discovers these automatically and injects a grouped reference block into your assembled `CLAUDE.md` on every apply. See the [weft README](https://github.com/jophira/weft#per-project-rules) for full details.
 
 ### Source: [github.com/jophira/weft](https://github.com/jophira/weft)
+
+---
+
+## License
+
+MIT. See [LICENSE](LICENSE).
