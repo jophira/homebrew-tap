@@ -37,7 +37,7 @@ brew install jophira/tap/weft
 - **Merges sources** — overlay personal rules on top of team rules; later sources win on conflict
 - **Normalises harnesses** — one source tree writes `CLAUDE.md` for Claude Code, `AGENTS.md` for Codex, `.mdc` for Cursor, `global_rules.md` for Windsurf, and more
 - **Watches for changes** — `weft profile use` applies and re-applies whenever source files change
-- **Per-project rules** — any directory named `projects` or `project-rules` in your source is auto-discovered; all `.md` files inside are injected into the assembled `CLAUDE.md` grouped by project, so the AI loads the right rules for the active project
+- **Per-project rules**: rule files carry `detect:` front-matter, and the session hook loads only the ones that match the repo you are in
 - **Write-back** — edits you make in `~/.claude/CLAUDE.md` are propagated back to the owning source repo on next startup
 - **MCP server** — `weft mcp serve` exposes the full API to any MCP-aware agent
 
@@ -45,7 +45,7 @@ brew install jophira/tap/weft
 
 ```bash
 # Register your rules repo
-weft source add personal ~/.rules/personal
+weft source add personal ~/weft/sources/personal
 
 # Combine sources into a named profile
 weft profile create main --sources personal
@@ -56,14 +56,7 @@ weft profile use main
 
 ### Per-project rules
 
-Place `<!-- weft:projects -->` in your source `CLAUDE.md` and organise rule files under any directory named `projects` or `project-rules`:
-
-```
-php/project-rules/ubs-keyinvest/ubs-keyinvest.md
-java/project-rules/instrument-service/instrument-service.md
-```
-
-Weft discovers these automatically and injects a grouped reference block into your assembled `CLAUDE.md` on every apply. See the [weft README](https://github.com/jophira/weft#per-project-rules) for full details.
+Give each rule file `label:`/`detect:` front-matter and weft loads it only in the projects it matches, via `weft rules resolve` from a session hook. `weft doctor` suggests the front-matter for each file. The older `<!-- weft:projects -->` marker still works but is deprecated. See the [weft README](https://github.com/jophira/weft#per-project-rules).
 
 ### Source: [github.com/jophira/weft](https://github.com/jophira/weft)
 
